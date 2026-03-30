@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@react-navigation/drawer": "^7.9.8",
+    "expo": "^55.0.9",
+    "react-native-reanimated": "4.2.1"
+  }
+}
