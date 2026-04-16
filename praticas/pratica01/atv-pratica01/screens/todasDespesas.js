@@ -1,37 +1,34 @@
-import { Text } from 'react-native';
+import { useContext } from 'react';
 import DespesaSaida from '../components/despesa/DespesaSaida';
-
-function DespesasRecentes() {
-    function filtrarUltimos7Dias() {
-        const hoje = new Date();
-        const seteDiasAtras = new Date();
-        seteDiasAtras.setDate(hoje.getDate() - 7);
-
-        return despesas.filter(despesa => {
-            return despesa.data >= seteDiasAtras && despesa.data <= hoje;
-        })
-    }
-}
+import { DespesasContext } from '../store/despesasContext';
+import { View, Text, StyleSheet } from 'react-native';
 
 function TodasDespesas() {
+    const despesasCtx = useContext(DespesasContext);
 
-    const DUMMY_DESPESAS = [
-        {
-            id: '1',
-            descricao: 'conta de luz',
-            valor: 100.99,
-            data: new Date(2026, 2, 25)
-        },
-        {
-            id: '2',
-            descricao: 'conta de agua',
-            valor: 40.99,
-            data: new Date(2026, 2, 24)
-        }
-    ]
+    if (despesasCtx.despesas.length === 0) {
+        return (
+            <View style={styles.vazio}>
+                <Text style={styles.vazioTexto}>Nenhuma despesa cadastrada.</Text>
+            </View>
+        );
+    }
+
     return (
-        <DespesaSaida despesas={filtrarUltimos7Dias(DUMMY_DESPESAS)} periodo={'Ultimos 7 dias'} />
+        <DespesaSaida despesas={despesasCtx.despesas} periodo={'Total'} />
     );
 }
+
+const styles = StyleSheet.create({
+    vazio: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    vazioTexto: {
+        color: '#888',
+        fontSize: 16,
+    },
+});
 
 export default TodasDespesas;

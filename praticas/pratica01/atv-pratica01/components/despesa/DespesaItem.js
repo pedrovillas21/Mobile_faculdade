@@ -7,20 +7,19 @@ function DespesaItem({ item }) {
 
     return (
         <Pressable>
-            <View style={StyleSheet.itemContainer}>
-                <View style={StyleSheet.itemText}>
+            <View style={styles.itemContainer}>
+                <View style={styles.itemText}>
                     <Text>{getDataFormatada(item.data)}</Text>
                 </View>
-                <View style={StyleSheet.itemText}>
+                <View style={styles.itemText}>
                     <Text>{item.descricao}</Text>
                 </View>
-                <View style={StyleSheet.itemText}>
+                <View style={styles.itemText}>
                     <Text>{item.valor}</Text>
                 </View>
-
             </View>
         </Pressable>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

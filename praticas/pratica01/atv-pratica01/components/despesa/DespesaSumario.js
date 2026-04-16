@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 function DespesaSumario({ despesas, periodo }) {
     const somaDespesas = despesas.reduce((total, despesa) => {
