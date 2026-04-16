@@ -7,14 +7,21 @@ import TodasDespesas from './screens/todasDespesas';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 export default function App() {
 
   const Tab = createBottomTabNavigator();
 
   function BottonTabScreen() {
+    const navigation = useNavigation();
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerRight: () => (<IconButton icon="add" size={24} onPress={() => {
+            navigation.navigate('Gerenciar Despesas');
+          }} />)
+        }}>
         <Tab.Screen name="Despesas Recentes" component={DespesasRecentes} />
         options={{
           tabBarIcon: ({ color, size }) => (<Ionicons name="hourglass" size={size} color={color} />),
@@ -23,6 +30,12 @@ export default function App() {
           tabBarLabelStyle: { fontSize: 12 }
         }},
         <Tab.Screen name="Todas Despesas" component={TodasDespesas} />
+        options={{
+          tabBarIcon: ({ color, size }) => (<Ionicons name="wallet-outline" size={size} color={color} />),
+          tabBarLabel: 'Todas',
+          title: 'Todas Despesas',
+          tabBarLabelStyle: { fontSize: 12 }
+        }},
       </Tab.Navigator>
     )
   }
